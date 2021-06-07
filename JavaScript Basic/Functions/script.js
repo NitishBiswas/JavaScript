@@ -98,3 +98,36 @@ console.log(person.fullName);
 person.fullName = 'Hey, Nitish_Biswas';
 
 console.log(person.fullName);
+
+// Try and Catch and throw error
+
+const person1 = {
+    firstName: 'Nitish',
+    lastName: 'Biswas',
+
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`
+    },
+
+    set fullName(value) {
+
+        if (typeof value !== 'string')
+            throw new Error('Value is not a string!');
+
+        const parts = value.split(' ');
+
+        if (parts.length !== 2)
+            throw new Error('Enter a first name and last name!')
+        this.firstName = parts[0];
+        this.lastName = parts[1];
+    }
+}
+
+console.log(person1.fullName);
+
+try {
+    person1.fullName = null;
+}
+catch (e) { console.log(e) };
+
+console.log(person1.fullName);
